@@ -3,10 +3,7 @@ let produtoEscolhido = [];
 
 let produtos = document.querySelector('.produto-input').addEventListener('change', function produtoSelecionado(){
 
-    let valores = new Array;
-    valores['Fone de ouvido - R$100'] = 100;
-    valores['Celular - R$1400'] = 1400;
-    valores['Oculus VR - R$5000'] = 5000;    
+    let valores = [produtos]; 
 
     console.log(valores)
     console.log(valores.length)
