@@ -1,45 +1,41 @@
-let button = document.querySelector('.botao-adicionar');
-let produtoEscolhido = [];
-
-let produtos = document.querySelector('.produto-input').addEventListener('change', function produtoSelecionado(){
-
-    let valores = new Array;
-    valores['Fone de ouvido - R$100'] = 100;
-    valores['Celular - R$1400'] = 1400;
-    valores['Oculus VR - R$5000'] = 5000;    
-
-    console.log(valores)
-    console.log(valores.length)
-})
-
-function printClick(){
-    foiClicado();
-}
-
-function foiClicado(){
-    let clicado = true;
-    if (clicado == true){
-       console.log(produtos)
-    }
-}
-
-button.addEventListener('click', printClick);
-
+limpar();
 
 function adicionar(){
-    let adicionar = document.getElementById('lista-produtos');
-    let conteudoAdicionado = adicionar.querySelector('section');
+    //recuperar valores: nome do produto, quantidade e valor
+    let produto = document.getElementById('produto').value;
+    let nomeProduto = produto.split('-')[0];
+    let valorUnitário = produto.split('R$')[1];
+    let quantidade = document.getElementById('quantidade').value;
 
+    //calcular o preço, o nosso subtotal
+    let preco = quantidade * valorUnitário ;
 
+    //adicionar o produto no carrinho  
+    let carrinho = document.getElementById('lista-produtos');
+    carrinho.innerHTML =  carrinho.innerHTML + `<section class="carrinho__produtos__produto">
+                          <span class="texto-azul">${quantidade}</span> ${nomeProduto} <span class="texto-azul">R$${preco}</span>
+                          </section>`;
+
+    //atualizar o valor total da compra
+    let valorAtual = document.querySelector('.carrinho__total').textContent;
+    let valorProduto = parseFloat(valorAtual.split('R$')[1]);
+    let valorTotal = (valorProduto + preco);
+    if (valorTotal > 0){
+        document.querySelector('p').innerHTML = `Total: <span class="texto-azul" id="valor-total">R$${valorTotal}</span>`;
+    }else{
+        document.querySelector('p').innerHTML = `Total: <span class="texto-azul" id="valor-total">R$${preco}</span>`;
+    }
+    document.getElementById('quantidade').value = 0;
 }
-
 
 function limpar(){
     let limparTexto = document.getElementById('lista-produtos');
-    let textoLimpo = limparTexto.querySelector('section');
-    let limparTotal = document.querySelector('p')
+    let limparTotal = document.querySelector('p');
 
-    textoLimpo.textContent = 'Carrinho Vazio ;-;';
-    limparTotal.textContent = 'Total:'
-    console.log(textoLimpo);
+    limparTexto.textContent = '';
+    limparTotal.textContent = 'Total: R$ 0 ';
 }
+
+
+
+
