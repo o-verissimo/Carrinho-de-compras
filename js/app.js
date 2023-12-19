@@ -6,8 +6,8 @@ function adicionar(){
     let nomeProduto = produto.split('-')[0];
     let valorUnitário = produto.split('R$')[1];
     let quantidade = document.getElementById('quantidade').value;
-
-    //calcular o preço, o nosso subtotal
+    if (quantidade > 0){
+         //calcular o preço, o nosso subtotal
     let preco = quantidade * valorUnitário ;
 
     //adicionar o produto no carrinho  
@@ -26,7 +26,13 @@ function adicionar(){
         document.querySelector('p').innerHTML = `Total: <span class="texto-azul" id="valor-total">R$${preco}</span>`;
     }
     document.getElementById('quantidade').value = 0;
+    }else{
+        alert('Escolha quantos produtos deseja!')
+    }
+    
 }
+
+   
 
 function limpar(){
     let limparTexto = document.getElementById('lista-produtos');
