@@ -1,5 +1,7 @@
 limpar();
 
+
+
 function adicionar(){
     //recuperar valores: nome do produto, quantidade e valor
     let produto = document.getElementById('produto').value;
